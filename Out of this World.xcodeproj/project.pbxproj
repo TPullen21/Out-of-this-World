@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD3E6D2B19E5B8C5005916A6 /* AstronomicalData.m in Sources */ = {isa = PBXBuildFile; fileRef = DD3E6D2A19E5B8C5005916A6 /* AstronomicalData.m */; };
 		DD5F2B3019E4782C00F71FE1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5F2B2F19E4782C00F71FE1 /* main.m */; };
 		DD5F2B3319E4782C00F71FE1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5F2B3219E4782C00F71FE1 /* AppDelegate.m */; };
-		DD5F2B3619E4782C00F71FE1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5F2B3519E4782C00F71FE1 /* ViewController.m */; };
 		DD5F2B3919E4782C00F71FE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD5F2B3719E4782C00F71FE1 /* Main.storyboard */; };
 		DD5F2B3B19E4782C00F71FE1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD5F2B3A19E4782C00F71FE1 /* Images.xcassets */; };
 		DD5F2B3E19E4782C00F71FE1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5F2B3C19E4782C00F71FE1 /* LaunchScreen.xib */; };
 		DD5F2B4A19E4782C00F71FE1 /* Out_of_this_WorldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5F2B4919E4782C00F71FE1 /* Out_of_this_WorldTests.m */; };
+		DD5F2B5519E479ED00F71FE1 /* OuterSpaceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5F2B5419E479ED00F71FE1 /* OuterSpaceTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,19 +28,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD3E6D2919E5B8C5005916A6 /* AstronomicalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AstronomicalData.h; sourceTree = "<group>"; };
+		DD3E6D2A19E5B8C5005916A6 /* AstronomicalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AstronomicalData.m; sourceTree = "<group>"; };
 		DD5F2B2A19E4782C00F71FE1 /* Out of this World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Out of this World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5F2B2E19E4782C00F71FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD5F2B2F19E4782C00F71FE1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DD5F2B3119E4782C00F71FE1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DD5F2B3219E4782C00F71FE1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DD5F2B3419E4782C00F71FE1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DD5F2B3519E4782C00F71FE1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		DD5F2B3819E4782C00F71FE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD5F2B3A19E4782C00F71FE1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DD5F2B3D19E4782C00F71FE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DD5F2B4319E4782C00F71FE1 /* Out of this WorldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Out of this WorldTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5F2B4819E4782C00F71FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD5F2B4919E4782C00F71FE1 /* Out_of_this_WorldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Out_of_this_WorldTests.m; sourceTree = "<group>"; };
+		DD5F2B5319E479ED00F71FE1 /* OuterSpaceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OuterSpaceTableViewController.h; path = ../OuterSpaceTableViewController.h; sourceTree = "<group>"; };
+		DD5F2B5419E479ED00F71FE1 /* OuterSpaceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OuterSpaceTableViewController.m; path = ../OuterSpaceTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +84,12 @@
 		DD5F2B2C19E4782C00F71FE1 /* Out of this World */ = {
 			isa = PBXGroup;
 			children = (
+				DD3E6D2919E5B8C5005916A6 /* AstronomicalData.h */,
+				DD3E6D2A19E5B8C5005916A6 /* AstronomicalData.m */,
+				DD5F2B5319E479ED00F71FE1 /* OuterSpaceTableViewController.h */,
+				DD5F2B5419E479ED00F71FE1 /* OuterSpaceTableViewController.m */,
 				DD5F2B3119E4782C00F71FE1 /* AppDelegate.h */,
 				DD5F2B3219E4782C00F71FE1 /* AppDelegate.m */,
-				DD5F2B3419E4782C00F71FE1 /* ViewController.h */,
-				DD5F2B3519E4782C00F71FE1 /* ViewController.m */,
 				DD5F2B3719E4782C00F71FE1 /* Main.storyboard */,
 				DD5F2B3A19E4782C00F71FE1 /* Images.xcassets */,
 				DD5F2B3C19E4782C00F71FE1 /* LaunchScreen.xib */,
@@ -218,9 +223,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD5F2B3619E4782C00F71FE1 /* ViewController.m in Sources */,
+				DD5F2B5519E479ED00F71FE1 /* OuterSpaceTableViewController.m in Sources */,
 				DD5F2B3319E4782C00F71FE1 /* AppDelegate.m in Sources */,
 				DD5F2B3019E4782C00F71FE1 /* main.m in Sources */,
+				DD3E6D2B19E5B8C5005916A6 /* AstronomicalData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +417,7 @@
 				DD5F2B4F19E4782C00F71FE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DD5F2B5019E4782C00F71FE1 /* Build configuration list for PBXNativeTarget "Out of this WorldTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +426,7 @@
 				DD5F2B5219E4782C00F71FE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
