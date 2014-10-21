@@ -18,6 +18,22 @@
 
 @implementation OuterSpaceTableViewController
 
+#pragma mark - Lazy Instantiation of Properties
+
+- (NSMutableArray *)planets {
+    if (!_planets) {
+        _planets = [[NSMutableArray alloc] init];
+    }
+    return _planets;
+}
+
+- (NSMutableArray *)addedSpaceObjects {
+    if (!_addedSpaceObjects) {
+        _addedSpaceObjects = [[NSMutableArray alloc] init];
+    }
+    return _addedSpaceObjects;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -26,8 +42,6 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    self.planets = [[NSMutableArray alloc] init];
     
     for (NSMutableDictionary *planetData in [AstronomicalData allKnownPlanets]) {
         NSString *imageName = [NSString stringWithFormat:@"%@.jpg", planetData[PLANET_NAME]];
@@ -54,8 +68,14 @@
         if ([segue.destinationViewController isKindOfClass:[SpaceImageViewController class]]) {
             SpaceImageViewController *nextViewController = segue.destinationViewController;
             NSIndexPath *path = [self.tableView indexPathForCell:sender];
-            SpaceObject *selectedObject = [self.planets objectAtIndex:path.row];
-            nextViewController.spaceObject = selectedObject;
+            if (path.section == 1) {
+                SpaceObject *selectedObject = [self.addedSpaceObjects objectAtIndex:path.row];
+                nextViewController.spaceObject = selectedObject;
+            }
+            else {
+                SpaceObject *selectedObject = [self.planets objectAtIndex:path.row];
+                nextViewController.spaceObject = selectedObject;
+            }
         }
     }
     
@@ -63,8 +83,14 @@
         if ([segue.destinationViewController isKindOfClass:[SpaceDataViewController class]]) {
             SpaceDataViewController *targetViewController = segue.destinationViewController;
             NSIndexPath *path = sender;
-            SpaceObject *selectedObject = self.planets[path.row];
-            targetViewController.spaceObject = selectedObject;
+            if (path.section == 1) {
+                SpaceObject *selectedObject = self.addedSpaceObjects[path.row];
+                targetViewController.spaceObject = selectedObject;
+            }
+            else {
+                SpaceObject *selectedObject = self.planets[path.row];
+                targetViewController.spaceObject = selectedObject;
+            }
         }
     }
     
@@ -88,13 +114,12 @@
 
 - (void)addSpaceObject:(SpaceObject *)spaceObject {
     
-    if (!self.addedSpaceObjects) {
-        self.addedSpaceObjects = [[NSMutableArray alloc] init];
-    }
     [self.addedSpaceObjects addObject:spaceObject];
     
     NSLog(@"addSpaceObject");
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
