@@ -17,11 +17,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.imageView = [[UIImageView alloc] initWithImage:self.spaceObject.spaceImage];
+    self.scollView.contentSize = self.imageView.frame.size;
+    [self.scollView addSubview:self.imageView];
+    self.scollView.delegate = self;
+    
+    self.scollView.maximumZoomScale = 2.0;
+    self.scollView.minimumZoomScale = 0.5;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return self.imageView;
 }
 
 /*

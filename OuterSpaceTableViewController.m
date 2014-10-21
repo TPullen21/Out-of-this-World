@@ -7,6 +7,10 @@
 //
 
 #import "OuterSpaceTableViewController.h"
+#import "AstronomicalData.h"
+#import "SpaceObject.h"
+#import "SpaceImageViewController.h"
+#import "SpaceDataViewController.h"
 
 @interface OuterSpaceTableViewController ()
 
@@ -23,17 +27,51 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    NSString *planet1 = @"Mercury";
-    NSString *planet2 = @"Venus";
-    NSString *planet3 = @"Earth";
-    NSString *planet4 = @"Mars";
-    NSString *planet5 = @"Jupiter";
-    NSString *planet6 = @"Saturn";
-    NSString *planet7 = @"Uranus";
-    NSString *planet8 = @"Neptune";
-    NSString *planet9 = @"Pluto";
+    self.planets = [[NSMutableArray alloc] init];
     
-    self.planets = [[NSMutableArray alloc] initWithObjects:planet1, planet2, planet3, planet4, planet5, planet6, planet7, planet8, planet9, nil];
+    for (NSMutableDictionary *planetData in [AstronomicalData allKnownPlanets]) {
+        NSString *imageName = [NSString stringWithFormat:@"%@.jpg", planetData[PLANET_NAME]];
+        SpaceObject *planet = [[SpaceObject alloc] initWithData:planetData andImage:[UIImage imageNamed:imageName]];
+        [self.planets addObject:planet];
+        
+    }
+    
+//    NSString *planet1 = @"Mercury";
+//    NSString *planet2 = @"Venus";
+//    NSString *planet3 = @"Earth";
+//    NSString *planet4 = @"Mars";
+//    NSString *planet5 = @"Jupiter";
+//    NSString *planet6 = @"Saturn";
+//    NSString *planet7 = @"Uranus";
+//    NSString *planet8 = @"Neptune";
+//    NSString *planet9 = @"Pluto";
+//    
+//    self.planets = [[NSMutableArray alloc] initWithObjects:planet1, planet2, planet3, planet4, planet5, planet6, planet7, planet8, planet9, nil];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([sender isKindOfClass:[UITableViewCell class]]) {
+        if ([segue.destinationViewController isKindOfClass:[SpaceImageViewController class]]) {
+            SpaceImageViewController *nextViewController = segue.destinationViewController;
+            NSIndexPath *path = [self.tableView indexPathForCell:sender];
+            SpaceObject *selectedObject = [self.planets objectAtIndex:path.row];
+            nextViewController.spaceObject = selectedObject;
+        }
+    }
+    
+    if ([sender isKindOfClass:[NSIndexPath class]]) {
+        if ([segue.destinationViewController isKindOfClass:[SpaceDataViewController class]]) {
+            SpaceDataViewController *targetViewController = segue.destinationViewController;
+            NSIndexPath *path = sender;
+            SpaceObject *selectedObject = self.planets[path.row];
+            targetViewController.spaceObject = selectedObject;
+        }
+    }
+    
+    if ([segue.destinationViewController isKindOfClass:[AddSpaceObjectViewController class]]) {
+        AddSpaceObjectViewController *addSpaceObjectVC = segue.destinationViewController;
+        addSpaceObjectVC.delegate = self;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,51 +79,90 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - AddSpaceObjectViewController Delegate
+
+- (void)didCancel {
+    NSLog(@"Did Cancel");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)addSpaceObject:(SpaceObject *)spaceObject {
+    
+    if (!self.addedSpaceObjects) {
+        self.addedSpaceObjects = [[NSMutableArray alloc] init];
+    }
+    [self.addedSpaceObjects addObject:spaceObject];
+    
+    NSLog(@"addSpaceObject");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 3;
+    
+    if ([self.addedSpaceObjects count]) {
+        return 2;
+    }
+    
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     
-    if (section == 0) {
-        return 2;
-    }
-    else if (section == 1) {
-        return 1;
-    }
-    else {
-        return 3;
+//    if (section == 0) {
+//        return 2;
+//    }
+//    else if (section == 1) {
+//        return 1;
+//    }
+//    else {
+//        return 3;
+//    }
+    
+    if (section == 1) {
+        return [self.addedSpaceObjects count];
     }
     
-    //return [self.planets count];
+    return [self.planets count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"Cell" forIndexPath:indexPath];
     
     // Configure the cell...
-    //cell.textLabel.text = [self.planets objectAtIndex:indexPath.row];
     
-    if (indexPath.section == 0) {
-        cell.textLabel.textColor = [UIColor redColor];
-        cell.textLabel.text = @"I am in section 0";
-    }
-    else if (indexPath.section == 1) {
-        cell.textLabel.textColor = [UIColor blueColor];
-        cell.textLabel.text = @"Another section";
+    if (indexPath.section == 1) {
+        SpaceObject *planet = [self.addedSpaceObjects objectAtIndex:indexPath.row];
+        
+        cell.textLabel.text = planet.name;
+        cell.detailTextLabel.text = planet.nickName;
+        cell.imageView.image = planet.spaceImage;
     }
     else {
-        cell.textLabel.textColor = [UIColor yellowColor];
-        cell.textLabel.text = [NSString stringWithFormat:@"%li", (long)indexPath.row];
+        SpaceObject *planet = [self.planets objectAtIndex:indexPath.row];
+        
+        cell.textLabel.text = planet.name;
+        cell.detailTextLabel.text = planet.nickName;
+        cell.imageView.image = planet.spaceImage;
+        
     }
     
+    cell.backgroundColor = [UIColor clearColor];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.detailTextLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+    
     return cell;
+}
+
+#pragma mark UITableView Delgate
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"Push To Space Data" sender:indexPath];
 }
 
 /*

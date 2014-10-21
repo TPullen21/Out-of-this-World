@@ -17,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UIImage *orionImage = [UIImage imageNamed:@"orion.jpg"];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:orionImage];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +36,27 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)cancelButtonPressed:(id)sender {
+    [self.delegate didCancel];
+}
+
+- (IBAction)addButtonPressed:(UIButton *)sender {
+    SpaceObject *newSpaceobject = [self returnNewSpaceObject];
+    [self.delegate addSpaceObject:newSpaceobject];
+}
+
+- (SpaceObject *)returnNewSpaceObject
+{
+    SpaceObject *addedSpaceObject = [[SpaceObject alloc] init];
+    addedSpaceObject.name = self.nameTextField.text;
+    addedSpaceObject.nickName = self.nicknameTextField.text;
+    addedSpaceObject.diameter = [self.diameterTextField.text floatValue];
+    addedSpaceObject.temperature = [self.temperatureTextField.text floatValue];
+    addedSpaceObject.numberOfMoons = [self.numberOfMoonsTextField.text intValue];
+    addedSpaceObject.interestingFact = self.interestingFactTextField.text;
+    
+    return addedSpaceObject;
+}
 
 @end

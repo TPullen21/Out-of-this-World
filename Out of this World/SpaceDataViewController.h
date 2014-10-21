@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SpaceObject.h"
 
-@interface SpaceDataViewController : UIViewController
+@interface SpaceDataViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) SpaceObject *spaceObject;
 
 @end
