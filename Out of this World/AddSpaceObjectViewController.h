@@ -19,7 +19,7 @@
 @end
 
 @interface AddSpaceObjectViewController : UIViewController
-
+ 
 @property (weak, nonatomic) id <AddSpaceObjectViewControllerDelegate> delegate;
 
 @property (strong, nonatomic) IBOutlet UITextField *nameTextField;
